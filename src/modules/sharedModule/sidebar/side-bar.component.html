@@ -1,0 +1,40 @@
+<div class="side-bar bg-dark">
+    <div class="side-bar__container">  
+        <div class="side-bar__logo">
+            <div>
+                <img class="side-bar__logo-img" src="../../../assets/icons/my-logo.svg" />
+            </div>
+
+            <div class="side-bar__site-name">
+                HyperTools
+            </div>
+
+        </div>
+        <div class="side-bar__list">
+            <ng-container *ngFor="let route of routingList">
+                <div [routerLink]="[route?.routing]" class="side-bar__item">
+                    <div>
+                        <img [src]="renderIocn(route.icon)" >
+                    </div>
+                    <div class="side-bar__title">{{route?.title}}</div>
+                </div>
+            </ng-container>
+        </div>      
+
+    </div>
+
+    <!-- <div class="side-bar__bottom"><p class="py-2">&copy; 2024 | <a href="#">Privacy Policy</a> | <a href="#">Terms</a></p>
+    </div> -->
+
+    <div class="side-bar__bottom">
+        <div class="side-bar__bottom-photo">
+            <img class="side-bar__my-photo" src="../../../assets/icons/Profile.png" />
+            <div class="side-bar__user-name-active"></div>
+        </div>
+
+            <div class="side-bar__user-name">
+                Bahaa Hayajneh
+            </div>
+
+    </div>
+</div>

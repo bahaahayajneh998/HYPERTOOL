@@ -1,0 +1,26 @@
+$warning:#ffc107;
+$dark:#212529;
+$light:#E5E5E5;
+$gray:#767676;
+$white:#fff;
+$success:#198754;
+
+
+
+
+
+
+
+$background-color: var(--background-color);
+$text-color: var(--text-color);
+$text-header-color: var(--text-header-color);
+$diff-text-color: var(--diff-text-color);
+$main-background-color: var(--main-background-color);
+
+
+$grid-columns:                12 !default;
+$grid-gutter-width:           30px !default;
+$grid-row-columns:            6 !default;
+
+
+$container-padding-x: $grid-gutter-width !default;

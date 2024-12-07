@@ -1,0 +1,427 @@
+<div class="text-statistics">
+    <div class="text-statistics__container">
+<app-header-top header="Text Statistics Tool"
+description="Analyze your text with a variety of metrics like word count, sentence length, and more!"
+buttonText="Start Analyze"
+imageName="text.svg"
+></app-header-top>
+<div class="container">
+  <div class="text-statistics__main-container">
+    <!-- <header class="text-statistics__header">
+      <h1>Text Analyzer</h1>
+      <p>Real-time counting of words, characters, and sentences</p>
+    </header> -->
+
+    <div class="d-flex align-items-center justify-content-center">
+      <div>Execution Time</div>
+      <div class="mx-3">{{durationTime? durationTime : 0}} ms</div>
+    </div>
+  
+    <main class="text-statistics__main-content">
+      <div id="input-section" class="text-statistics__flex">
+        <div class="text-statistics__textarea-width">
+          <div class="position-relative">
+            <button type="button" class="btn text-statistics__clear-btn" (click)="clearText()">
+              <img src="../../../assets/icons/Trash.svg" />
+            </button>
+            <div class="text-statistics__tooltip">Delete all text</div>
+          </div>
+          <textarea rows="15" class="text-statistics__text-input" (input)="textChanges()" placeholder="Start typing or paste text here..." [(ngModel)]="textInput"></textarea>
+          <div class="position-relative">
+            <button
+            class="btn text-statistics__copy-btn"
+            type="button"
+            ngxClipboard
+            [cbContent]="textInput"
+            (cbOnSuccess)="onCopySuccess()"
+            (cbOnError)="onCopyFailure()"
+            [class.btn-success]="isCopied"
+        >
+        <img src="../../../assets/icons/Copy.svg" />                  
+      </button>
+
+      <div class="text-statistics__tooltip">Copy all text</div>
+
+          </div>
+        </div>
+        <div class="text-statistics__char-percentage">
+          <div class="text-statistics__char-details">Details <i class="fa fa-info-circle mx-2 text-white"></i></div>
+          <div *ngFor="let item of characterInfo" class="text-statistics__char-percentage-item">
+            <div *ngIf="item?.char" class="text-statistics__char-percentage-holder">
+              <div class="row align-items-center">
+                <div class="col">
+                  <div class="text-statistics__char-text">
+                    {{item?.char === ' '? 'space':item.char}}
+                  </div></div>-<div class="col">
+                  <div class="text-statistics__char-count">{{item.count}}</div>
+                </div>-<div class="col">
+                  <div class="progress">
+                    <div class="progress-bar px-5 progress-bar-striped progress-bar-animated" [ngClass]="{'bg-primary':item?.perc > 75,'bg-success':item?.perc < 75 && item?.perc > 50,'bg-warning':item?.perc <=50 && item?.perc > 25,'bg-danger':item?.perc <=25}" role="progressbar"     [style.width.%]="item?.perc" 
+                    [attr.aria-valuenow]="item?.perc" aria-valuemin="0.0" aria-valuemax="100">{{item?.perc}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="text-statistics__counters">
+        <div class="text-statistics__counter-card">
+          <div class="text-statistics__counter-title">Sentences</div>
+          <div class="text-statistics__counter-value">{{sentenceCount}}</div>
+        </div>
+        <div class="text-statistics__counter-card">
+          <div class="text-statistics__counter-title">Words</div>
+          <div class="text-statistics__counter-value">{{wordCount}}</div>
+        </div>
+        <div class="text-statistics__counter-card">
+          <div class="text-statistics__counter-title">Characters</div>
+          <div class="text-statistics__counter-value">{{textInput.length}}</div>
+        </div>
+        <div class="text-statistics__counter-card">
+          <div class="text-statistics__counter-title">Spaces</div>
+          <div class="text-statistics__counter-value">{{spaceCount}}</div>
+        </div>
+      </div>
+
+      <div class="text-statistics__counters">
+        <div class="text-statistics__counter-card">
+          <div class="text-statistics__counter-title">Hashtag (#)</div>
+          <div class="text-statistics__counter-value">{{hashtagCount? hashtagCount : 0}}</div>
+        </div>
+        <div class="text-statistics__counter-card">
+          <div class="text-statistics__counter-title">Question mark (?)</div>
+          <div class="text-statistics__counter-value">{{questionMarkCount? questionMarkCount : 0}}</div>
+        </div>
+        <div class="text-statistics__counter-card">
+          <div class="text-statistics__counter-title">Exclamation mark (!)</div>
+          <div class="text-statistics__counter-value">{{exclamationMarkCount? exclamationMarkCount: 0}}</div>
+        </div>
+        <div class="text-statistics__counter-card">
+          <div class="text-statistics__counter-title">Comma (,)</div>
+          <div class="text-statistics__counter-value">{{commaCount? commaCount : 0}}</div>
+        </div>
+      </div>
+
+
+      <div class="text-statistics__counters">
+        <div class="text-statistics__counter-card">
+          <div class="text-statistics__counter-title">Colon (:)</div>
+          <div class="text-statistics__counter-value">{{colonCount? colonCount : 0}}</div>
+        </div>
+        <div class="text-statistics__counter-card">
+          <div class="text-statistics__counter-title">Semi-colon (;)</div>
+          <div class="text-statistics__counter-value">{{semiColonCount? semiColonCount : 0}}</div>
+        </div>
+        <div class="text-statistics__counter-card">
+          <div class="text-statistics__counter-title">Apostrophe ('')</div>
+          <div class="text-statistics__counter-value">{{apostropheCount? apostropheCount : 0}}</div>
+        </div>
+        <div class="text-statistics__counter-card">
+          <div class="text-statistics__counter-title">Dash (-)</div>
+          <div class="text-statistics__counter-value">{{dashCount? dashCount : 0}}</div>
+        </div>
+      </div>
+
+      <div class="text-statistics__counters">
+        <div class="text-statistics__counter-card">
+          <div class="text-statistics__counter-title">Number</div>
+          <div class="text-statistics__counter-value">{{numberCount? numberCount : 0}}</div>
+        </div>
+        <div class="text-statistics__counter-card">
+          <div class="text-statistics__counter-title">Plus (+)</div>
+          <div class="text-statistics__counter-value">{{plusCount? plusCount : 0}}</div>
+        </div>
+        <div class="text-statistics__counter-card">
+          <div class="text-statistics__counter-title">Equal ('')</div>
+          <div class="text-statistics__counter-value">{{equalCount? equalCount : 0}}</div>
+        </div>
+        <div class="text-statistics__counter-card">
+          <div class="text-statistics__counter-title">Ampersand (&)</div>
+          <div class="text-statistics__counter-value">{{ampersandCount? ampersandCount : 0}}</div>
+        </div>
+      </div>
+
+      <div class="text-statistics__counters">
+        <div class="text-statistics__counter-card">
+          <div class="text-statistics__counter-title">Bracket round ()</div>
+          <div class="text-statistics__counter-value">{{backetRoundCount? backetRoundCount : 0}}</div>
+        </div>
+        <div class="text-statistics__counter-card">
+          <div class="text-statistics__counter-title">Bracket square []</div>
+          <div class="text-statistics__counter-value">{{semiColonCount? semiColonCount : 0}}</div>
+        </div>
+        <div class="text-statistics__counter-card">
+          <div class="text-statistics__counter-title">Less than (<)</div>
+          <div class="text-statistics__counter-value">{{lessThanCount? lessThanCount : 0}}</div>
+        </div>
+
+        <div class="text-statistics__counter-card">
+          <div class="text-statistics__counter-title">Greater than (>)</div>
+          <div class="text-statistics__counter-value">{{greaterThanCount? greaterThanCount : 0}}</div>
+        </div>
+   
+      </div>
+    </main>
+  
+    <!-- <footer class="text-statistics__footer">
+      <p>© 2024 Text Analyzer | <a href="#">Privacy Policy</a> | <a href="#">Terms</a></p>
+    </footer> -->
+  </div>
+</div>
+
+
+  <!-- <div class="text-statistics__why-about">
+    <h1>Why Use This Tool?</h1>
+    <p>This tool allows you to analyze any text by calculating metrics such as word count, character count, sentence count, average word length, and more. It’s useful for writers, students, and anyone needing quick insights into their text data.</p>
+  </div>
+</div> -->
+
+
+<div class="container">
+
+  <div class="text-statistics__about">
+    <div>
+      <img class="text-statistics__about-img" src="../../../assets/icons/why.svg" />
+    </div>
+    <div class="text-statistics__about-desc">
+    <div class="text-statistics__header-center">Why use this Tool?</div>
+
+    <p>This tool allows you to analyze any text by calculating metrics such as word count, character count, sentence count, average word length, and more. It’s useful for writers, students, and anyone needing quick insights into their text data.</p>
+
+    </div>
+  </div>
+</div>
+
+
+          <hr />
+
+
+
+           <div class="container">
+
+            <div class="text-statistics__about">
+
+              <div class="text-statistics__about-desc">
+              <div class="text-statistics__header-center">About the tool</div>
+
+              <p>Our Text Statistics Tool provides an easy-to-use interface to analyze your text. Simply input or paste your content into the text box, and the tool will instantly show you detailed statistics. It’s designed for anyone who wants to analyze their content for clarity, readability, and structure.            </p>
+  
+              </div>
+
+              <div>
+                <img class="text-statistics__about-img" src="../../../assets/icons/about.svg" />
+              </div>
+            </div>
+            </div>
+
+          <hr />
+
+          <div class="container">
+            <div class="text-statistics__testismonials">
+              <div class="text-statistics__header-center">Testimonial</div>
+              <div class="row cursor-ponter">
+                <div class="col-lg-6">
+                <div class="text-statistics__testismonials-list">
+                  <ng-container *ngFor="let item of testimonials">
+                    <div (click)="selectTestimonialItem(item.id)" class="row">
+                      <div class="col-12 col-lg-4 col-sm-4">
+                        <div [ngClass]="{'text-statistics__testismonials-item-active':item.id === selectedTestimonial.id}" class="text-statistics__testismonials-item-name">{{item.name}}</div>
+                    </div>
+                      <div class="col-12 col-lg-4 col-sm-4">
+                        <div class="text-statistics__testismonials-item-date">{{item.date}}</div>
+                    </div>
+                      <div class="col-12 col-lg-4 col-sm-4">
+                        <div class="text-statistics__testismonials-item-rating">
+                          <ng-container *ngFor="let star of [1,2,3,4,5]; let i = index;">
+                            <i [ngClass]="{'text-statistics__testismonials-item-active':item.id === selectedTestimonial.id && star <=item.rating}" class="fa fa-star"></i>
+                          </ng-container>
+                          </div>
+
+                    </div>
+  
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+              <div class="col-lg-6">
+
+                <div class="text-statistics__selected-testimonial">
+                  <ng-container *ngFor="let star of [1,2,3,4,5]; let i = index;">
+                    <i [ngClass]="{'text-statistics__testismonials-item-active':star <=selectedTestimonial.rating}" class="fa fa-star"></i>
+                  </ng-container>
+                  <div class="half-circle"></div>
+         
+                  <div class="text-statistics__selected-testimonial-text">
+                    {{selectedTestimonial?.testimonialText}}
+                  </div>
+
+
+
+                  <div class="text-statistics__selected-testimonial-image">
+                    <img [src]="'../../../assets/icons/'+selectedTestimonial?.imageName" />
+                  </div>
+
+                  <div class="text-statistics__selected-testimonial-name">
+                    {{selectedTestimonial?.name}}
+                  </div>
+
+                  <div class="text-statistics__curve"></div>
+                </div>
+              </div>
+              </div>
+        
+            </div>
+          </div>
+          <hr />
+          <div class="container my-5">
+            <div class="text-statistics__header-center">Services</div>
+          <div class="row">
+            <div class="col-3">
+              <div class="text-statistics__services-crad">
+                <div class="text-statistics__services-icon">
+                  <img src="../../../assets/icons/word-frequent.png" />
+                </div>
+                <div class="text-statistics__services-header">
+                  Word Frequency
+                </div>
+                <div class="text-statistics__services-desc">
+                  Identify the most frequently used words in your text for better content optimization.
+                </div>
+                <div class="text-statistics__services-read-more">
+                  <a class="cursor-pointer">Read More <i class="fa fa-arrow-right"></i></a>
+                </div>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="text-statistics__services-crad">
+                <div class="text-statistics__services-icon">
+                  <img src="../../../assets/icons/sentence-freq.png" />
+                </div>
+                <div class="text-statistics__services-header">
+                  Sentence Complexity
+                </div>
+                <div class="text-statistics__services-desc">
+                  Analyze the structure of your sentences to enhance readability and flow.
+                </div>
+                <div class="text-statistics__services-read-more">
+                  <a class="cursor-pointer">Read More <i class="fa fa-arrow-right"></i></a>
+                </div>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="text-statistics__services-crad">
+                <div class="text-statistics__services-icon">
+                  <img src="../../../assets/icons/keyword-density.png" />
+                </div>
+                <div class="text-statistics__services-header">
+                  Keyword Density
+                </div>
+                <div class="text-statistics__services-desc">
+                  Analyze the frequency of keywords to optimize for SEO and relevance.                </div>
+                <div class="text-statistics__services-read-more">
+                  <a class="cursor-pointer">Read More <i class="fa fa-arrow-right"></i></a>
+                </div>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="text-statistics__services-crad">
+                <div class="text-statistics__services-icon">
+                  <img src="../../../assets/icons/help-services.png" />
+                </div>
+                <div class="text-statistics__services-header">
+                 24/7 Help & Support
+                </div>
+                <div class="text-statistics__services-desc">
+                  We are available around the clock to assist you with any issues or queries.                </div>
+                <div class="text-statistics__services-read-more">
+                  <a class="cursor-pointer">Read More <i class="fa fa-arrow-right"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+          <hr />
+
+          <div class="container">
+            <div class="text-statistics__header-center">Contact Us</div>
+            <div class="text-statistics__contact-us">
+            <div class="d-flex">
+              <div class="w-25">
+                <div class="text-statistics__contact-info">
+                  <h3 class="mx-4">Let's get in touch</h3>
+                  <p class="mx-4">We're open for any suggestion or just to have a chat</p>
+                  <div class="d-flex align-items-center my-4">
+                    <div class="px-1"><i class="fa fa-map-marker text-statistics__contact-icon"></i></div>
+                    <div><span class="bold">Address:</span> 198 West 21th Street, Suite 721 New York NY 10016</div>
+                  </div>
+
+                  <div class="d-flex align-items-center my-4">
+                    <div class="px-1"><i class="fa fa-phone text-statistics__contact-icon"></i></div>
+                    <div><span class="bold">Phone:</span>+962 779 446 483</div>
+                  </div>
+
+                  <div class="d-flex align-items-center my-4">
+                    <div class="px-1"><i class="fa fa-paper-plane text-statistics__contact-icon"></i></div>
+                    <div><span class="bold">Email:</span><a class="cursor-pointer text-white" href="mailto:bahaahayajneh3@gmail.com">bahaahayajneh3@gmail.com</a></div>
+                  </div>
+
+                  <div class="d-flex align-items-center my-4">
+                    <div class="px-1"><i class="fa fa-globe text-statistics__contact-icon"></i></div>
+                    <div><span class="bold">Website:</span>HYPERTOOL</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="w-75">
+                <div class="text-statistics__contact-form">
+                  <!-- <div class="text-statistics__contact-header">Contact Us</div> -->
+                  <form>
+                    <div class="text-statistics__contact-form-margin">
+                    <div class="row">
+                      <div class="col-6">
+                        <div class="text-statistics__contact-label">Full Name</div>
+                        <input placeholder="Name" type="text" class="text-statistics__contact-input"/>
+                      </div>
+                      <div class="col-6">
+                        <div class="text-statistics__contact-label">Email Address</div>
+                        <input placeholder="Email" type="email" class="text-statistics__contact-input"/>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="text-statistics__contact-form-margin">
+                     <div class="row">
+                      <div class="col-12">
+                        <div class="text-statistics__contact-label">Subject</div>
+                        <input placeholder="Subject" type="text" class="text-statistics__contact-input"/>
+
+                        </div>
+                        </div>
+                      </div>
+
+                      <div class="text-statistics__contact-form-margin">
+
+                     <div class="row">
+                      <div class="col-12">
+                        <div class="text-statistics__contact-label">Message</div>
+                        <textarea rows="5" placeholder="Message"  class="text-statistics__contact-input"></textarea>
+
+                        </div>
+                        </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-warning text-white">Send Message</button>
+                    
+                  </form>
+                </div>
+              </div>
+
+            </div>
+            </div>
+          </div>
+            <hr />
+          
+    </div>
+</div>

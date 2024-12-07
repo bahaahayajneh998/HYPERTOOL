@@ -1,0 +1,27 @@
+@import '../styles/variables.scss';
+@mixin make-container($gutter: $container-padding-x) {
+    width: 100%;
+    padding-right: $gutter * .5; // stylelint-disable-line function-disallowed-list
+    padding-left: $gutter * .5; // stylelint-disable-line function-disallowed-list
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  @mixin animation-slider {
+    animation: slideInUp 1s ease-out forwards;;
+  }
+
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(5px); /* Start from below */
+      //  background-color: $light;
+
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0); /* Slide to its normal position */
+      //  background-color: $warning;
+      }
+    }
+  

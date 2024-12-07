@@ -1,0 +1,71 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
+
+.text-statistics__header-top {
+    // background: linear-gradient(135deg, #007BFF, #00D4FF);
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+    background: linear-gradient(170deg, #007BFF 70%, #00D4FF 30%);
+}
+
+.text-statistics__header-top-container {
+    width: 50%;
+}
+
+.text-statistics__header-top-desc {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.text-statistics__header {
+    font-size: 50px;
+    margin-bottom: 10px;
+  }
+
+.text-statistics__header-top-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.text-statistics__header-center {
+    font-size: 30px;
+    font-weight: 700;
+    color: $dark;
+    position: relative;
+    margin-bottom: 30px;
+    display: inline-block;
+
+    &::after {
+        position: absolute;
+        content: "";
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 3px;
+        background-color: $warning;
+        animation: expand-line 1s forwards;
+    }
+}
+
+@keyframes expand-line {
+    to {
+        width: 100%;
+    }
+}
+
+
+.text-statistics__start-analyze {
+    background-color: #fff;
+    color: #007BFF;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+.text-statistics__start-analyze:hover {
+    background-color: #0056b3;
+    color: white;
+}

@@ -1,0 +1,108 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
+
+.side-bar {
+    min-height: 100%;
+    width: 280px;
+    position: relative;
+}
+
+.side-bar__item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin: 10px 20px;
+    width: 220px;
+    &:hover {
+    background-color: rgba($warning,0.9);
+    cursor: pointer;
+    border-radius: 6px;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
+    }
+}
+
+.side-bar__title {
+    color: $white;
+    font-size: 16px;
+    margin: 0 5px 0 10px;
+}
+
+.side-bar__user-name {
+    color: $white;
+    font-weight: 700;
+    font-size: 16px;
+    margin: 0 10px;
+}
+
+
+
+.side-bar__bottom {
+    border-top: 1px solid $light;
+    margin: 0 20px;
+    padding: 15px 0;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+
+.toolbar {
+    height: 115px;
+    background-color: $white;
+}
+// .side-bar__container {
+//     border: 1px solid $light;
+//     box-shadow: 1px 2px 6px 0 $light;
+// }
+
+.side-bar__top {
+   // text-align: right;
+    border-bottom: 1px solid $light;
+    padding: 20px 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.side-bar__user-name-active {
+    width: 13px;
+    height: 13px;
+    background-color: $success;
+    border-radius: 25px;
+    position: absolute;
+    bottom: 20px;
+    left: 30px;
+}
+
+img.side-bar__my-photo {
+    width: 40px;
+    height: 40px;
+}
+
+.side-bar__site-name {
+    color: $white;
+    font-size: 25px;
+    text-transform: uppercase;
+    margin: 0 5px;
+   }
+   
+   .side-bar__logo {
+       display: flex;
+       align-items: center;
+       padding: 20px;
+       border-bottom: 1px solid $light;
+       margin: 0 20px;
+   }
+   
+   .side-bar__logo-img {
+       width: 60px;
+       height: 60px;
+       margin-left: -25px;
+   }
+
+   .side-bar__email {
+    color: $white;
+    font-weight: 700;
+    font-size: 14px;
+   }

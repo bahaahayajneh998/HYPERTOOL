@@ -1,0 +1,8 @@
+# Enforce LF line endings for common files
+*.md text eol=lf
+*.json text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.config text eol=lf
+*.gitignore text eol=lf
+.editorconfig text eol=lf

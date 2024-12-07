@@ -1,0 +1,192 @@
+<div class="weather-city">
+    <app-header-top header="Weather City Tool"
+        description="This tool allows users to search for weather information in cities worldwide. It provides real-time weather data, including temperature, humidity, wind speed, and weather conditions (sunny, cloudy, rainy, etc.)."
+        buttonText="Start Analyze" imageName="weather-city.svg"></app-header-top>
+
+            <div class="weather-city__what">
+                <div class="container">
+
+                    <div class="weather-city__flex-center">
+                        <div>
+                            <img class="weather-city__about-img" src="../../../assets/icons/about-weather.svg" />
+                          </div>
+                      <div class="weather-city__about-desc">
+                        <div class="weather-city__header-center">About the weather city tool</div>
+                        <p>The Weather City Tool is an easy-to-use application designed to provide real-time weather information for any city around the world. With just a city name, users can instantly access up-to-date weather data, including:</p>
+                        <ul>
+                            <li><strong>Current Temperature:</strong> See the temperature in your preferred units (Celsius or Fahrenheit).</li>
+                            <li><strong>Weather Conditions:</strong>  View the general weather conditions (e.g., sunny, rainy, cloudy).
+                            </li>
+                            <li><strong>Humidity and Wind Speed:</strong> Understand the humidity levels and wind speed in the selected city.
+                            </li>
+                        </ul>
+          
+                      </div>
+        
+
+                    </div>
+                    </div>
+
+
+            </div>
+
+
+
+<hr />
+
+<div class="weather-city__search">
+    <div class="container">
+        <div class="weather-city__flex-center">
+
+          <div class="weather-city__about-desc">
+            <div class="weather-city__header-center">Why Use the Weather City App?</div>
+            <p>The Weather City Tool is an easy-to-use application designed to provide real-time weather information for any city around the world. With just a city name, users can instantly access up-to-date weather data, including:</p>
+            <ul>
+                <li><strong>Convenient:</strong>  Get instant access to weather updates for any city around the world, anytime, anywhere.</li>
+                <li><strong>Accurate:</strong> Trustworthy, real-time weather data from reliable sources.
+                </li>
+                <li><strong>Easy-to-Understand:</strong>  Clear and simple interface, designed for easy navigation.
+                </li>
+
+                <li><strong>Free:</strong>No hidden costs or subscriptions, just reliable weather information at your fingertips.
+                </li>
+                <li><strong>Comprehensive:</strong>  Provides a full range of weather data including temperature, wind speed, humidity, and air quality.
+
+                </li>
+            </ul>
+
+          </div>
+
+          <div>
+            <img class="weather-city__about-img" src="../../../assets/icons/why-weather.svg" />
+
+          </div>
+
+
+        </div>
+
+
+    
+
+    </div>
+</div>
+
+<hr />
+
+<div class="weather-city__search-list">
+
+  <div class="container">
+    <div class="weather-city__header-center">Discover Your City Weather</div>
+
+    <div class="weather-city__header">
+        <form class="weather-city__search">
+            <input type="text" name="searchCity" [(ngModel)]="cityName" (keyup.enter)="fetchWeather()" placeholder="Search for a city..." class="weather-city__searchform form-control">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </form> 
+        <div class="weather-city__units">
+            <span class="weather_unit_celsius">°C</span>
+            <span class="weather_unit_farenheit">°F</span>
+        </div>
+    </div>
+    <ng-container *ngIf="weatherData">
+    <div class="weather-city__body">
+        <h1 class="weather-city__city">
+            {{weatherData?.name}}
+        </h1>
+        <div class="weather-city__datetime">
+            {{today | dateFormatWithTime}}
+        </div>
+        <div class="weather-city__forecast">
+            {{weatherData?.weather[0]?.main}}
+        </div>
+        <div class="weather-city__icon">
+            <img [src]="'http://openweathermap.org/img/wn/'+weatherData?.weather[0]?.icon+'@4x.png'" />
+        </div>
+        <p class="weather-city__temperature">
+        </p>
+        <div class="weather-city__minmax">
+            <p>Min: {{weatherData?.main?.temp_min}}°</p>
+            <p>Max: {{weatherData?.main?.temp_max}}°</p>
+        </div>
+    </div>
+
+    <div class="weather-city__info">
+        <div class="weather-city__card">
+            <i class="fa fa-thermometer-half"></i>
+            <div>
+                <p>Temperature</p>
+                <p class="weather-city__pressure">{{ weatherData.main.temp }} °C</p>
+            </div>
+        </div>
+        <div class="weather-city__card">
+            <i class="fa fa-cloud"></i>
+            <div>
+                <p>Condition</p>
+                <p class="weather-city__realfeel">
+                    {{ weatherData.weather[0].description }}
+                </p>
+            </div>
+        </div>
+        <div class="weather-city__card">
+            <i class="fa fa-tint"></i>
+            <div>
+                <p>Humidity</p>
+                <p class="weather-city__humidity">
+                    {{ weatherData.main.humidity }}%
+                </p>
+            </div>
+        </div>
+        <div class="weather-city__card">
+            <i class="fa fa-arrows-alt"></i>
+            <div>
+                <p>Wind Speed</p>
+                <p class="weather-city__wind">{{ weatherData.wind.speed }} m/s</p>
+            </div>
+        </div>
+
+    </div>
+</ng-container>
+
+<div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
+</div>
+
+</div>
+
+<hr />
+<div class="weather-city__feedback">
+    <div class="container">
+        <div class="weather-city__header-center">Feedback</div>
+        <ng-container *ngFor="let item of testimonialList; let i=index;">
+            <div class="weather-city__feedback-end">
+                <div class="weather-city__feedback-name">{{item?.name}}</div>
+                <div class="weather-city__feedback-location">{{item?.location}}</div>
+            </div>
+            <div class="weather-city__feedback-item">
+                <img *ngIf="i % 2 === 0" class="weather-city__feedback-img" [src]="'../../assets/icons/'+item?.imageName" />
+                <div class="weather-city__feedback-text">{{item?.text}}</div>
+                <img *ngIf="i % 2 === 1" class="weather-city__feedback-img" [src]="'../../assets/icons/'+item?.imageName" />
+
+            </div>
+
+        </ng-container>
+    </div>
+</div>
+
+<hr />
+
+
+<div class="weather-city__search-list">
+
+    <div class="container">
+      <div class="weather-city__header-center">Most Popular Search Cities</div>
+        <div  class="weather-city__popular-search-holder">
+            <div *ngFor="let city of citySearchList" class="weather-city__popular-search-item">
+                {{city}}
+            </div>
+        </div>
+
+    </div>
+    </div>
+
+
+    </div>

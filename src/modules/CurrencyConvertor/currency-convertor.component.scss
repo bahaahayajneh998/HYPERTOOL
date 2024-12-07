@@ -1,0 +1,149 @@
+@import '../../styles/variables.scss';
+
+.currency-convertor__header-top {
+    height: 500px;
+    background-color: #F0F5FF;
+}
+
+
+option img {
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  
+  .me-2 {
+    margin-right: 8px;
+  }
+  
+.currency-convertor {
+    // text-align: center;
+}
+
+.currency-convertor__container {
+    // margin: 180px auto;
+    // border-radius: 15px;
+    // border: 1px solid $light;
+    // box-shadow: 1px 3px 6px 0 $light;
+    // padding: 20px;
+   // position: relative;
+}
+
+.currency-convertor__header {
+    font-weight: bold;
+    font-size: 60px;
+    color: $dark;
+    text-align: center;
+}
+
+.currency-convertor__hedaer-desc {
+    font-size: 16px;
+    font-weight: 400;
+    color: $dark;
+    text-align: center;
+}
+
+.currency-convertor__header-box {
+    font-size: 32px;
+    font-weight: 700;
+    color: $dark;
+    text-align: center;
+    margin: 30px 0;
+}
+
+.currency-convertor__box {
+    position: absolute;
+    width: 900px;
+    height: 371px;
+    top: 200px;
+    right: 150px;
+    background-color: white;
+    border-radius: 8px;
+    border: 1px solid #C6C6C6;
+}
+
+.currency-convertor__box-desc {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 400;
+    color: $dark;
+    margin-bottom: 25px;
+}
+
+.currency-convertor__desc {
+    font-weight: 500;
+    font-size: 16px;
+    color: $gray;
+} 
+
+.currency-convertor__flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 25px 0;
+}
+
+.currency-convertor__name {
+    width: 500px;
+}
+
+.currency-convertor__input {
+    width: 100%;
+    height: 70px;
+    /* line-height: 70px; */
+    font-size: 20px;
+    text-align: start;
+    font-weight: 700;
+    color: #212529;
+   // border-radius: 25px;
+    /* margin: 0 15px; */
+  //  margin: 0 15px;
+    // &::placeholder {
+    //     font-size: 16px;
+    //     color: $gray;
+    //     font-weight: 300;
+    // }
+}
+
+.currency-convertor__flag-code-holder {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.currency-convertor__flag-code-section {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #E5E5E5;
+    width: 50%;
+    position: absolute;
+    right: 0;
+    top: -200px;
+    z-index: 999;
+    background-color: white;
+}
+
+.currency-convertor__flag-code-item {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    &:hover {
+        border: 1px solid $light;
+        border-radius: 5px;
+    }
+}
+
+.currency-convertor__flag-code-selected {
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 25px;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.currency-convertor__relative {
+    position: relative;
+}

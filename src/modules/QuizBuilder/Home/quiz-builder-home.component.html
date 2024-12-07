@@ -1,0 +1,204 @@
+<div class="quiz-builder-home">
+    <app-header-top header="Quiz Builder Tool"
+        description="A Quiz Builder is a web-based tool designed to allow users to create customized quizzes dynamically. It provides a simple and intuitive interface where users can define multiple types of questions (e.g., multiple-choice, text input, checkboxes) and configure answers for each."
+        buttonText="Start Analyze" imageName="quiz-online.svg"></app-header-top>
+
+
+        <div class="text-statistics__about">
+            <div class="container">
+                <div class="weather-city__flex-center">
+                    <div>
+                <img class="text-statistics__about-img" src="../../../assets/icons/about-quiz.svg" />
+              </div>
+          <div class="text-statistics__about-desc">
+          <div class="text-statistics__header-center">About the Quiz Builder Tool</div>
+
+          <p>The Quiz Builder Tool is a versatile and user-friendly application designed to help individuals and organizations create dynamic, interactive quizzes with ease. Whether you're a teacher crafting a learning assessment, a business owner designing a training evaluation, or a content creator looking to engage your audience, this tool is the perfect solution for you.
+
+            With the Quiz Builder, you can create custom quizzes tailored to your needs. The tool supports multiple question types, including radio buttons, checkboxes, and text input, allowing for both simple and complex quiz designs. The drag-and-drop interface and simple form elements make quiz creation quick and intuitive, even for beginners.
+            
+            In addition to building questions and answers, the Quiz Builder also provides features like quiz preview, validation, and saving functionality, so you can test and refine your quiz before publishing. Whether you're creating quizzes for educational purposes, employee assessments, or fun online competitions, the Quiz Builder Tool is here to make your quiz creation process easier and more efficient.</p>
+
+          </div>
+</div>
+</div>
+        </div>
+<hr />
+
+<div class="text-statistics__about">
+
+    <div class="container">
+        <div class="weather-city__flex-center">
+
+  <div class="text-statistics__about-desc">
+    <div class="text-statistics__header-center">Why Choose the Quiz Builder Tool?
+    </div>
+    <p>The Quiz Builder Tool offers a clean and simple interface that allows you to create quizzes without any technical knowledge. With just a few clicks, you can add questions, customize options, and publish your quiz.
+        , including:</p>
+    <ul>
+        <li><strong>Supports Multiple Question Types:</strong> Customize your quiz with radio buttons, checkboxes, and text input fields to create a variety of questions. Whether you need multiple-choice, true/false, or open-ended questions, the Quiz Builder Tool has you covered.</li>
+        <li><strong>Real-Time Preview::</strong>  The tool offers a live preview feature that lets you see exactly how your quiz will appear to users. You can test the layout and functionality before making it available to participants.
+        </li>
+        <li><strong>Instant Results and Analytics:</strong> Add, remove, and reorder questions with a simple drag-and-drop interface. This ensures you have complete control over the structure and flow of your quiz.
+        </li>
+    </ul>
+
+  </div>
+
+  <div>
+    <img class="text-statistics__about-img" src="../../../assets/icons/quiz-why.svg" />
+  </div>
+
+</div>
+</div>
+</div>
+
+        <hr />
+
+
+
+
+
+
+
+
+
+    <!-- Question Form -->
+    
+
+
+    <div class="text-statistics__template-section">
+        <div class="container">
+            <div class="text-statistics__header-center">Discover your template</div>
+            
+            <div class="template-container">
+                <!-- Section for creating a new template -->
+                <div class="create-template-section">
+                  <h3>Create New Template</h3>
+                  <input 
+                    type="text" 
+                    [(ngModel)]="newTemplateName" 
+                    class="template-input form-control" 
+                    placeholder="Enter template name" 
+                  />
+                  <textarea 
+                    [(ngModel)]="newTemplateDescription" 
+                    class="template-description form-control" 
+                    placeholder="Enter template description"
+                  ></textarea>
+                  <button 
+                    (click)="createNewTemplate()" 
+                    class="btn-create" 
+                    [disabled]="!newTemplateName || !newTemplateDescription">
+                    Create New Template
+                  </button>
+                </div>
+              
+                <!-- Section for displaying templates or a message if no templates exist -->
+                <div class="template-list-section">
+                  <div *ngIf="templateList.length > 0; else noTemplates">
+                    <div class="template-cards">
+                      <div (click)="openModalTemplate(templateQuestions)" class="template-card" *ngFor="let template of templateList">
+                        <div class="card-content">
+                          <h3>TMP #{{template.id}}-{{ template.name }}</h3>
+                          <p>{{ template.description }}</p>
+                          <span>{{template.createdDate |dateFormatWithoutTime}}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              
+                  <ng-template #noTemplates>
+                    <div class="no-templates-message">
+                      <p class="m-0">No templates found. Please add some templates.</p>
+                    </div>
+                  </ng-template>
+                </div>
+              </div>
+              
+              
+                
+
+              
+              
+              
+        </div>
+        </div>
+  </div>
+  
+
+  <ng-template #templateQuestions>
+    <div class="modal-header">
+        <h3 class="modal-title">Create Questions</h3>
+      </div>
+      <div class="modal-body">
+         <form (ngSubmit)="addQuestion()" #questionForm="ngForm" class="question-form">
+      <label for="questionText">Question:</label>
+      <input
+        type="text"
+        id="questionText"
+        name="questionText"
+        [(ngModel)]="newQuestion.text"
+        placeholder="Enter your question"
+        required
+      />
+  
+      <label for="questionType">Answer Type:</label>
+      <select
+        id="questionType"
+        name="questionType"
+        [(ngModel)]="newQuestion.type"
+        required
+      >
+        <option value="radio">Radio Buttons</option>
+        <option value="checkbox">Checkboxes</option>
+        <option value="text">Text Input</option>
+      </select>
+  
+      <div *ngIf="newQuestion.type !== 'text'" class="options-section">
+        <h4>Options:</h4>
+        <div *ngFor="let option of newQuestion.options; let i = index" class="option-group">
+          <input
+            type="text"
+            [(ngModel)]="newQuestion.options[i]"
+            name="option{{ i }}"
+            placeholder="Option {{ i + 1 }}"
+            required
+          />
+          <button type="button" class="remove-btn" (click)="removeOption(i)">Remove</button>
+        </div>
+        <button type="button" class="add-option-btn" (click)="addOption()">Add Option</button>
+      </div>
+  
+      <button type="submit" [disabled]="!questionForm.valid" class="add-question-btn">
+        Add Question
+      </button>
+    </form> 
+  
+    Question Preview
+     <div class="question-preview">
+      <h2>Preview Questions</h2>
+      <div *ngFor="let question of questions" class="question-preview-item">
+        <h3>{{ question.text }}</h3>
+        <ng-container [ngSwitch]="question.type">
+          <div *ngSwitchCase="'radio'">
+            <div *ngFor="let option of question.options">
+              <label><input type="radio" name="{{ question.text }}" /> {{ option }}</label>
+            </div>
+          </div>
+          <div *ngSwitchCase="'checkbox'">
+            <div *ngFor="let option of question.options">
+              <label><input type="checkbox" /> {{ option }}</label>
+            </div>
+          </div>
+          <div *ngSwitchCase="'text'">
+            <label><input type="text" placeholder="Your answer here" /></label>
+          </div>
+        </ng-container>
+      </div>
+    </div> 
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-warning" type="button">Close</button>
+      </div>
+  </ng-template>

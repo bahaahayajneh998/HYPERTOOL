@@ -1,0 +1,147 @@
+<div class="currency-convertor">
+  <div class="currency-convertor__container">
+<div class="currency-convertor__header-top">
+<div class="currency-convertor__header">
+  Currency Converter
+</div>
+
+<div class="currency-convertor__hedaer-desc">
+  Need to make an international business payment? Take a look at our live foreign exchange rates.
+</div>
+</div>
+
+
+<div class="currency-convertor__box">
+
+  <div class="currency-convertor__header-desc-holder">
+    <div class="currency-convertor__header-box">
+      Make fast and affordable <br > international business payments
+    </div>
+
+    <div class="currency-convertor__box-desc">
+      Send secure international business payments in XX currencies, all at competitive rates with no hidden fees.
+    </div>
+
+  </div>
+
+  <div class="currency-convertor__form">
+    <form>
+
+      <div class="currency-convertor__flag-code-holder">
+        <div class="currency-convertor__relative">
+          <input class="currency-convertor__input form-control" name="amountFrom" (input)="changeAmountValue()" type="text" placeholder="Amount" [(ngModel)]="amount" />
+          <div class="currency-convertor__flag-code-selected" (click)="selectCodeEvent('from')">
+            <!-- <img [src]="getFlagUrl(selectFromCode)"  width="35" class="currency-convertor__img me-2">   -->
+            {{ selectFromCode }}</div>
+          <div class="currency-convertor__flag-code-section" *ngIf="isSelectFromCode">
+          <ng-container *ngFor="let currency of currencies">
+            <div (click)="onSelectCurrency(currency.code,'from')" class="currency-convertor__flag-code-item">
+              <img [src]="currency.flag" alt="{{ currency.code }}" width="35" class="currency-convertor__img me-2">  
+              {{ currency.code }}
+            </div>
+        </ng-container> 
+      </div>
+        </div>
+
+        <div>
+          <img src="../../assets/icons/convertBox.svg" />
+        </div>
+
+        <div class="currency-convertor__relative">
+          <input class="currency-convertor__input form-control" name="amount" type="text"  [(ngModel)]="convertedAmount" />
+          <div class="currency-convertor__flag-code-selected" (click)="selectCodeEvent('to')">
+            <img [src]="getFlagUrl(selectToCode)"  width="35" class="currency-convertor__img me-2">  
+            {{ selectToCode }}</div>
+          <div class="currency-convertor__flag-code-section" *ngIf="isSelectToCode">
+          <ng-container *ngFor="let currency of currencies">
+            <div (click)="onSelectCurrency(currency.code,'to')" class="currency-convertor__flag-code-item">
+              <img [src]="currency.flag" alt="{{ currency.code }}" width="35" class="currency-convertor__img me-2">  
+              {{ currency.code }}
+            </div>
+        </ng-container> 
+      </div>
+        </div>
+
+      </div>
+
+      <!-- <div class="currency-convertor__flex">
+        <div class="currency-convertor__name">
+          <select name="selectFromCurrency" [(ngModel)]="fromCurrency" class="form-control">
+            <ng-container *ngFor="let currency of currencies">
+            <option [value]="currency.code">
+              {{ currency.code }}
+            </option>
+              <img [src]="currency.flag" alt="{{ currency.code }}" width="35" class="currency-convertor__img me-2">
+
+          </ng-container>            
+          </select>
+            </div>
+          <div>
+            <input class="currency-convertor__input form-control" name="amount" type="number" placeholder="Amount" [(ngModel)]="amount" />
+          </div>
+      </div> -->
+
+      <!-- <div class="currency-convertor__flex">
+        <div class="currency-convertor__name">
+          <select  name="selectToCurrency" [(ngModel)]="toCurrency" class="form-control">
+            <option *ngFor="let currency of currencies" [value]="currency.code">
+              
+              <img [src]="currency.flag" alt="{{ currency.code }}" width="35" class="currency-convertor__img me-2">
+              {{ currency.code }}
+            </option>            
+          </select>
+            </div>
+          <div class="currency-convertor__input">
+            {{ convertedAmount }}
+          </div>
+      </div> -->
+
+    </form>
+  </div>
+    
+</div>
+</div>
+</div>
+
+    
+    
+    
+    
+    
+<!--     
+    <div *ngIf="isLoadCompleted" class="container">
+      <h1 class="ui header">Currency Converter</h1>
+      <div class="form">
+        <div class="field">
+          <p>Enter the amount</p>
+          <input type="number" placeholder="Amount" [(ngModel)]="amount" />
+        </div>
+        <div class="two fields">
+          <div class="field">
+            <div>
+              <label>From</label>
+            </div>
+            <select [(ngModel)]="from">
+              <option *ngFor="let c of GetAllCurrencies()" [value]="c">
+                {{ c }}
+              </option>
+            </select>
+          </div>
+          <div class="field">
+            <div><label>To</label></div>
+            <select [(ngModel)]="to">
+              <option *ngFor="let c of GetAllCurrencies()" [value]="c">
+                {{ c }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <h2 *ngIf="isShow" [style.display]="amount < 0 ? 'red' : 'purple'">
+          {{ amount.toFixed(2) }} {{ from }} = {{ convert().toFixed(2) }} {{ to }}
+        </h2>
+        <button [disabled] = "(!amount)" (click)="function()" class="fluid ui button">
+          Get Exchange Rates
+        </button>
+      </div>
+    </div> -->
+  

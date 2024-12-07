@@ -1,0 +1,54 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
+
+.toolbar {
+    height: 125px;
+    background-color: $white;
+}
+.toolbar__container {
+    border: 1px solid $light;
+    box-shadow: 1px 2px 6px 0 $light;
+}
+
+.toolbar__top {
+   // text-align: right;
+    border-bottom: 1px solid $light;
+    padding: 10px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.toolbar__user-name-active {
+    width: 13px;
+    height: 13px;
+    background-color: $success;
+    border-radius: 25px;
+    position: absolute;
+    top: 62px;
+    right: 5px;
+}
+
+img.toolbar__my-photo {
+    width: 40px;
+    height: 40px;
+}
+
+.toolbar__site-name {
+    color: $dark;
+    font-size: 25px;
+    text-transform: uppercase;
+    margin: 0 5px;
+   }
+   
+   .toolbar__logo {
+       display: flex;
+       align-items: center;
+       padding: 20px;
+   }
+   
+   .toolbar__logo-img {
+       width: 60px;
+       height: 60px;
+   }
