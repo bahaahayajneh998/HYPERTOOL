@@ -27,3 +27,50 @@ a {
 .cursor-ponter {
     cursor: pointer;
 }
+
+.modal-header {
+    background-color: $warning;
+    color: $white;
+    border-radius: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+.custom-modal-small-width {
+    .modal-footer {
+      background-color: $white;
+    }
+    .modal-body {
+      height: calc(100vh - 200px) !important;
+    }
+  
+    .modal-body-sm-height{
+      height: auto !important;
+      min-height: initial;
+      max-height: 500px;
+    }
+}
+
+    .modal-header .close{
+        color:$white !important;
+        background-color: transparent;
+        border: 0;
+        font-size: 2rem;
+        margin: -1rem auto -1rem -1rem !important;
+        width: auto;
+        
+      }
+
+.button-modal {
+    width: fit-content !important;
+    font-size: 14px !important;
+}
+
+.pagination-container {
+    .ngx-pagination {
+        margin: 20px 0 !important;
+        text-align: start;
+    }
+
+}

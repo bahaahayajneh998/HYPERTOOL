@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../sharedModule/shared.module';
 import { FormsModule } from '@angular/forms';
 import { PipeDateWithoutTimeModule } from 'src/app/pipes/date-format-without-time.pipe';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { PipeDateWithoutTimeModule } from 'src/app/pipes/date-format-without-tim
     RouterModule.forChild(QUIZBUILDER_ROUTES),
     SharedModule,
     FormsModule,
-    PipeDateWithoutTimeModule
+    PipeDateWithoutTimeModule,
+    NgxPaginationModule
   ]
 })
 export class QuizBuilderModule { }

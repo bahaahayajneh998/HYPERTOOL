@@ -5,7 +5,8 @@ import { GALLERY_ROUTES } from './picture-gallery-routing.module';
 import { PictureGalleryHomeComponent } from './picture-gallery-home.component';
 import { Router } from 'express';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -15,7 +16,9 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule.forChild(GALLERY_ROUTES)
+    RouterModule.forChild(GALLERY_ROUTES),
+    ReactiveFormsModule,
+    NgxPaginationModule
   ]
 })
 export class PictureGalleryModule { }

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ECOMMERCE_ROUTES } from './ecommerce-routing.module';
 import { EcommerceHomeComponent } from './Home/ecommerce-home.component';
 import { RouterModule } from '@angular/router';
+import { SharedModule } from '../sharedModule/shared.module';
 
 
 @NgModule({
@@ -12,6 +13,7 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     CommonModule,
+    SharedModule,
     RouterModule.forChild(ECOMMERCE_ROUTES)
   ]
 })

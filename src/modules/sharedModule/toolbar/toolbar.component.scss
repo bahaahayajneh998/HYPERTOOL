@@ -13,7 +13,7 @@
 .toolbar__top {
    // text-align: right;
     border-bottom: 1px solid $light;
-    padding: 10px;
+    //padding: 10px;
     position: relative;
     display: flex;
     align-items: center;
@@ -26,8 +26,8 @@
     background-color: $success;
     border-radius: 25px;
     position: absolute;
-    top: 62px;
-    right: 5px;
+    top: 55px;
+    right: 0;
 }
 
 img.toolbar__my-photo {
@@ -52,3 +52,98 @@ img.toolbar__my-photo {
        width: 60px;
        height: 60px;
    }
+
+   input.form-control.toolbar__search {
+    width: 384px;
+    border-radius: 50px;
+}
+
+.toolbar__search-holder {
+    position: relative;
+    margin: 0 40px;
+}
+
+i.toolbar__search-icon.fa.fa-search {
+    position: absolute;
+    right: 25px;
+    top: 15px;
+    color: $gray;
+    font-weight: 100;
+    font-size: 16px;
+}
+
+.toolbar__sidebar-list-top {
+    display: inline-block;
+    list-style-type: none;
+    margin: 0 10px;
+
+}
+
+a.toolbar__sidebar-link {
+    font-weight: 500;
+    font-size: 15px;
+    text-transform: capitalize;
+    color:$dark;
+
+    &:hover {
+       // color: $warning;
+        transition: 1s;
+    }
+}
+
+.toolbar__shop-icon {
+    display: flex;
+}
+
+.toolbar__shop-icon-holder {
+    margin: 0 15px;
+}
+
+.toolbar__sidebar-link-list {
+    font-weight: 500;
+    font-size: 15px;
+    text-transform: capitalize;
+    color:$dark;
+    &:hover {
+        font-size: 30px;
+        color: red;
+
+        .toolbar__sidebar-hover-list {
+            display: block;
+           } 
+    }
+
+}
+
+.toolbar__hover-list {
+    border-bottom: 1px solid $grey;
+    padding: 10px 20px;
+    margin: 0;
+    display: block;
+}
+
+ul.toolbar__sidebar-list {
+    margin: 0;
+    padding: 0;
+}
+
+.toolbar__sidebar-hover-list {
+    display: none;
+    background-color: $dark;
+    position: absolute;
+    z-index: 10000;
+    width: 200px;
+    border-radius: 5px;
+    padding: 0;
+    a {
+        color: $light;
+        font-size: 14px;
+        font-weight: 500;
+
+        &:hover {
+        color: $warning;
+        transition: 1s;
+        }
+    }
+}
+

@@ -1,1 +1,91 @@
-<p>ecommerce-home works!</p>
+<!-- <div *ngFor="let item of items">
+    <div>
+      <h2>{{ item.name }}</h2>
+      <img [src]="item.picture" alt="{{ item.name }}">
+      <p>{{ item.description }}</p>
+      <p>Price: ${{ item.price }}</p>
+      <p *ngIf="item.hasDiscount">Discount Price: ${{ item.discountPrice }}</p>
+    </div>
+  </div> -->
+  
+  <div class="ecommerce-home">
+    <div class="ecommerce-home__container">
+        <div class="ecommerce-home__top-header-holder">
+        <div class="row">
+            <div class="col-5">
+                <h1>Exquisite design combined with functionalities</h1>
+                <div class="ecommerce-home__top-header-holder-desc">
+                    Pellentesque ullamcorper dignissim condimentum volutpat consequat mauris nunc lacinia quis.
+                </div>
+                <div class="ecommerce-home__top-header-holder-icon">
+                    <img class="ecommerce-home__icon" src="../../../assets/icons/jonathan.jpg">
+                    <img class="ecommerce-home__icon" src="../../../assets/icons/home-avatar-2.webp">
+                    <img class="ecommerce-home__icon" src="../../../assets/icons/home-avatar-3.webp">
+                    <span>Contact with our expert</span>
+                </div>
+                <button class="btn ecommerce-home__shop-now">Shop Now</button>
+            </div>
+
+            <div class="col-7">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="position-relative">
+                            <img class="ecommerce-home__top-header-image-large img-fluid" src="../../../assets/icons/ecommerce1.webp">
+                            <div class="ecommerce-home__small-desc-top">
+                                <div>Living Room</div>
+                                <span>$450
+                                </span>
+                            </div>
+
+                            <div class="ecommerce-home__small-desc-bottom">
+                                <a><img src="../../../assets/icons/Arrow right.svg" /></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="position-relative">
+                        <img class="ecommerce-home__top-header-image-small img-fluid" src="../../../assets/icons/ecommerce2.webp">
+                        <div class="ecommerce-home__small-desc-top">
+                            <div>Bed Room</div>
+                            <span>$320
+                            </span>
+                        </div>
+                        <div class="ecommerce-home__small-desc-bottom">
+                            <a><img src="../../../assets/icons/Arrow right.svg" /></a>
+                            </div>
+                        </div>
+                        <div class="ecommerce-home__off">
+                            <h3>25% OFF</h3>
+                            <div>lorem lorem lorem</div>
+                            <button type="button" class="btn ecommerce-home__explore">Explore Now</button>
+                        </div>
+                    </div>
+                    
+
+                </div>
+
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="ecommerce-home__bset-sallers">
+        <div class="ecommerce-home__header">
+            Bestsellers of the week
+        </div>
+
+        <div class="ecommerce-home__desc">
+            Quam elementum pulvinar etiam non quam. Faucibus nisl tincidunt eget nullam non nisi elementum sagittis vitae et leo duis ut diam quam.
+        </div>
+
+        <div class="ecommerce-home__bset-sallers-items">
+            <div class="row">
+                <div *ngFor="let item of bestSellersItems" class="col-3">
+                    <app-ecommerce-card [item]="item"></app-ecommerce-card>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+  </div>

@@ -262,3 +262,14 @@
     border-radius: 8px;
   }
   
+
+  .card-status {
+    width: fit-content;
+    color: $white;
+    padding: 10px 15px;
+    text-align: center;
+    border-radius: 25px;
+    font-size: 12px;
+    margin: 20px 0;
+    font-weight: 700;
+}

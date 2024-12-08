@@ -1,0 +1,112 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
+
+.ecommerce-card__flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ecommerce-card__image {
+   // background-color: #f2f2f2;
+   position: relative;
+
+}
+
+.ecommerce-card__item-image {
+    max-width: 100%;
+    height: 532px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+
+    &:hover {
+        transform: scale(1.03);
+        cursor: pointer;
+    }
+}
+
+.ecommerce-card {
+    /* text-align: center; */
+}
+
+.ecommerce-card__item-options {
+    text-align: center;
+}
+
+.ecommerce-card__item-options {
+    text-align: center;
+    position: absolute;
+    right: 12px;
+    top: 20px;
+}
+
+.ecommerce-card__item-options-icon {
+    background-color: $white;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 50px;
+    margin-bottom: 30px;
+
+    &:hover {
+        background-color: #456a6d;
+        cursor: pointer;
+        color:$white;
+    }
+}
+
+.ecommerce-card__saled {
+    position: absolute;
+    width: fit-content;
+    background-color: #456a6d;
+    color: $white;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 5px;
+    top: 30px;
+    left: 20px;
+}
+
+.ecommerce-home__bset-sallers {
+    margin: 50px 0;
+}
+
+.ecommerce-card__name {
+    text-align: center;
+    color:$dark;
+    font-weight: 700;
+    font-size: 16px;
+    margin: 12px 0;
+}
+
+.ecommerce-card__type {
+    text-align: center;
+    color:$gray;
+    font-weight: 500;
+    font-size: 12px;
+    margin: 12px 0;
+    text-transform: uppercase;
+}
+
+.ecommerce-card__price {
+    font-size: 12px;
+    font-weight: 00;
+    color: #42504b;
+}
+
+.ecommerce-card__discount {
+    font-size: 12px;
+    font-weight: 600;
+    color: $gray;
+    margin: 0 3px;
+    text-decoration: line-through;
+}
+
+.ecommerce-card__add-to-cart {
+    color: $dark;
+}
+
+.ecommerce-card__add-to-cart a {
+    font-size: 16px;
+    font-weight: 500;
+    color: #42504b;
+}

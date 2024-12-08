@@ -4,7 +4,7 @@ $light:#E5E5E5;
 $gray:#767676;
 $white:#fff;
 $success:#198754;
-
+$grey:#373535;
 
 
 
@@ -24,3 +24,33 @@ $grid-row-columns:            6 !default;
 
 
 $container-padding-x: $grid-gutter-width !default;
+
+
+$grid-breakpoints: (
+  // Extra small screen / phone
+  xs: 0,
+  // Small screen / phone
+  sm: 576px,
+  // Medium screen / tablet
+  md: 768px,
+  // Large screen / desktop
+  lg: 992px,
+  // Extra large screen / wide desktop
+  xl: 1200px
+);
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px
+);
+
+
+
+
+
+
+
+
+

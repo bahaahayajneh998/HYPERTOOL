@@ -1,0 +1,38 @@
+<div class="ecommerce-card">
+    <div class="ecommerce-card__container">
+        <div class="ecommerce-card__image">
+            <div *ngIf="item?.isSaled" class="ecommerce-card__saled">SALE</div>
+            <div class="ecommerce-card__flex">
+                <div></div>
+                <div><img class="ecommerce-card__item-image" [src]="item?.picture" /></div>
+                <div class="ecommerce-card__item-options">
+                    <div>
+                        <i [ngClass]="{'background-color':item?.isFavourite ? danger : white }" class="fa fa-heart-o ecommerce-card__item-options-icon"></i>
+                    </div>
+                    <div>
+                        <i class="ecommerce-card__item-options-icon fa fa-exchange"></i>
+                    </div>
+                    <div>
+                        <i class="fa fa-eye ecommerce-card__item-options-icon"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="ecommerce-card__name">{{item?.name}}</div>
+        <div class="ecommerce-card__type border-bottom">{{item?.typeName}}</div>
+        <!-- <hr> -->
+        <div class="ecommerce-card__flex mb-5">
+            <div class="d-flex align-items-center">
+                <div class="ecommerce-card__price">${{item?.price}}</div>
+                <div *ngIf="item?.hasDiscount" class="ecommerce-card__discount">${{(item?.price + item?.discountPrice) | number: '1.2-2'}}</div>    
+            </div>
+
+            <div class="ecommerce-card__add-to-cart">
+                <a>Add to chart</a>
+            </div>
+        </div>
+   
+    </div>
+</div>

@@ -98,14 +98,18 @@
                 <div class="template-list-section">
                   <div *ngIf="templateList.length > 0; else noTemplates">
                     <div class="template-cards">
-                      <div (click)="openModalTemplate(templateQuestions)" class="template-card" *ngFor="let template of templateList">
+                      <div (click)="openModalTemplate(templateQuestions,template)" class="template-card" *ngFor="let template of templateList | paginate: {  itemsPerPage: 5,currentPage: currentPage}; let i = index">
                         <div class="card-content">
                           <h3>TMP #{{template.id}}-{{ template.name }}</h3>
                           <p>{{ template.description }}</p>
                           <span>{{template.createdDate |dateFormatWithoutTime}}</span>
+                          <div [ngStyle]="{'background-color':template.status === 'In Progress'? commonService.commonColors.primary:commonService.commonColors.success}" class="card-status">{{template.status}}</div>
                         </div>
+
                       </div>
+                      
                     </div>
+
                   </div>
               
                   <ng-template #noTemplates>
@@ -114,6 +118,8 @@
                     </div>
                   </ng-template>
                 </div>
+                <pagination-controls class="pagination-container" (pageChange)="currentPage = $event"></pagination-controls>
+
               </div>
               
               
@@ -126,10 +132,16 @@
         </div>
   </div>
   
-
+<div class="custom-modal-small-width">
   <ng-template #templateQuestions>
     <div class="modal-header">
-        <h3 class="modal-title">Create Questions</h3>
+        <h5 class="modal-title">Create Questions</h5>
+        <button type="button"
+        class="close btn"
+        (click)="closeModal()"
+        aria-label="Close">
+  <span aria-hidden="true">&times;</span>
+</button>
       </div>
       <div class="modal-body">
          <form (ngSubmit)="addQuestion()" #questionForm="ngForm" class="question-form">
@@ -139,12 +151,13 @@
         id="questionText"
         name="questionText"
         [(ngModel)]="newQuestion.text"
+        class="form-control"
         placeholder="Enter your question"
         required
       />
   
       <label for="questionType">Answer Type:</label>
-      <select
+      <select class="form-control"
         id="questionType"
         name="questionType"
         [(ngModel)]="newQuestion.type"
@@ -160,11 +173,13 @@
         <div *ngFor="let option of newQuestion.options; let i = index" class="option-group">
           <input
             type="text"
+            class="form-control"
             [(ngModel)]="newQuestion.options[i]"
             name="option{{ i }}"
             placeholder="Option {{ i + 1 }}"
             required
           />
+          <input type="checkbox" (change)="selectCorrectAnser($event)"/>
           <button type="button" class="remove-btn" (click)="removeOption(i)">Remove</button>
         </div>
         <button type="button" class="add-option-btn" (click)="addOption()">Add Option</button>
@@ -198,7 +213,9 @@
       </div>
     </div> 
       </div>
-      <div class="modal-footer">
-        <button class="btn btn-warning" type="button">Close</button>
+      <div class="modal-footer d-flex align-items-end">
+        <button class="btn btn-white button-modal" (click)="closeModal()" type="button">Close</button>
+        <button class="btn btn-primary button-modal" (click)="submitQuestion()" type="button">Submit</button>
       </div>
   </ng-template>
+</div>

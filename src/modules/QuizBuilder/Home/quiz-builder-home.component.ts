@@ -1,5 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { CommonService } from 'src/services/common.service';
 
 @Component({
   selector: 'app-quiz-builder-home',
@@ -12,8 +13,65 @@ export class QuizBuilderHomeComponent implements OnInit {
   newTemplateName: string = ''; // Variable to hold the new template name
   newTemplateDescription: string = ''; // Variable to hold the desc template name
   modalRef: NgbModalRef;
+  currentPage:number=1;
+  questionsTemplateTemp =[{
+    id:1,
+    type:'text',
+    question:'What is your name?',
+    correctAnswer:'Bahaa'
+  },
+  {
+    id:23,
+    type:'radio',
+    question:'What is the best player in the history?',
+    options:[{
+      id:13,
+      optionText:'Messi',
+      isCorrectAnswer:true,
+    },
+    {
+      id:16,
+      optionText:'C.Ronaldo',
+      isCorrectAnswer:false,
+    },
+    {
+      id:19,
+      optionText:'Maradona',
+      isCorrectAnswer:false,
+    },
+  ]
+  },
+  {
+    id:21,
+    type:'checkbox',
+    question:'Which is the city for jordan country ?',
+    options:[{
+      id:13,
+      optionText:'Irbid',
+      isCorrectAnswer:true,
+    },
+    {
+      id:16,
+      optionText:'Amman',
+      isCorrectAnswer:true,
+    },
+    {
+      id:156,
+      optionText:'Salt',
+      isCorrectAnswer:true,
+    },
+    {
+      id:123,
+      optionText:'Riyadh',
+      isCorrectAnswer:false,
+    },
+  ]
+  },
 
-  constructor(private modalService: NgbModal) { }
+]
+  constructor(private modalService: NgbModal,
+    public commonService: CommonService
+  ) { }
 
   ngOnInit(): void {
 this.loadTemplates();
@@ -27,13 +85,16 @@ this.loadTemplates();
     text: '',
     type: 'radio',
     options: [''],
+    templateId:0
   };
-
+  questionsTemplate:any [] = []
+  selectedTemplate:any;
   // Add a new question to the questions array
   addQuestion(): void {
     if (this.newQuestion.type === 'text') {
       this.newQuestion.options = []; // Clear options for text type
     }
+    this.newQuestion.templateId = this.selectedTemplate.templateId;
     this.questions.push({ ...this.newQuestion });
     this.resetForm();
   }
@@ -65,7 +126,9 @@ this.loadTemplates();
 
   loadTemplates() {
     this.templateList = sessionStorage.getItem('templateList')? JSON.parse(sessionStorage.getItem('templateList') as string) : [];
-
+    this.templateList.map(item=>{
+      item.status = this.getStatusText(item.templateId);
+    })
   }
   
 
@@ -97,12 +160,31 @@ this.loadTemplates();
     }
   }
 
+  getStatusText(templateId:number) {
+    this.questionsTemplate = sessionStorage.getItem('questionsTemplate')? JSON.parse(sessionStorage.getItem('questionsTemplate') as string) : [];
+   let questionFilter = this.questionsTemplate.find(item => item.templateId === templateId);
+   return questionFilter? 'Completed' : 'In Progress';
+  }
 
-  openModalTemplate(template: TemplateRef<any>) {
+
+  openModalTemplate(template: TemplateRef<any>,selectedTemplate:any) {
+    this.selectedTemplate = selectedTemplate;
     this.modalRef = this.modalService.open(template, {
       animation: true,
       backdrop: 'static',
       scrollable: true,
     });
+  }
+
+  closeModal() {
+    this.modalRef.close();
+  }
+
+  submitQuestion() {
+
+  }
+
+  selectCorrectAnser(event) {
+
   }
 }
