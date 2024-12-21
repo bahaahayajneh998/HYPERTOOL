@@ -8,6 +8,8 @@ import { HeaderTopComponent } from './header-top/header-top.component';
 import { PipeDateWithTimeModule } from 'src/app/pipes/date-format-with-time.pipe';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EcommerceCardComponent } from './ecommerce-card/ecommerce-card.component';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 const SHARED_DECLARATIONS: Array<any> = [
   SideBarComponent,
   ToolBarComponent,
@@ -25,7 +27,9 @@ const SHARED_DECLARATIONS: Array<any> = [
     CommonModule,
     SharedRoutingModule,
     PipeDateWithTimeModule.forRoot(),
-    NgbModule
+    NgbModule,
+    FormsModule,
+    RouterModule
   ],
   exports: [
     SHARED_DECLARATIONS

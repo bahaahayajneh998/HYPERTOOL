@@ -11,10 +11,11 @@ export class EcommerceHomeComponent implements OnInit {
 
   items: any[] = [];
   bestSellersItems: any[] = [];
+  bestFurnitureSellersItems: any[] = [];
   constructor(private ecommerceItemService: EcommerceItemService) {}
 
   ngOnInit(): void {
-    this.getItems();
+    this.getCheckItems();
   }
 
   // for (const [id, name] of Object.entries(CategoryTypeMap)) {
@@ -27,15 +28,41 @@ export class EcommerceHomeComponent implements OnInit {
 //   <option *ngFor="let [id, name] of categories" [value]="id">{{ name }}</option>
 // </select>
 
+
+getCheckItems() {
+  if(this.ecommerceItemService.checkIfItemExistsInLocalStorage()) {
+    this.items =JSON.parse(sessionStorage.getItem('ecommerceItems') as string);
+    this.items.map(item=>{
+      if(item.itemsBought >= 100) {
+        this.bestSellersItems.push(item);
+      }
+  
+      if(item.itemsBought >= 250) {
+        this.bestFurnitureSellersItems.push(item);
+      }
+    })
+  }
+  else {
+this.getItems();
+  }
+
+}
   getItems() {
     this.ecommerceItemService.getItems().subscribe((data) => {
       this.bestSellersItems = []
       this.items = data;
+
+
       this.items.map(item=>{
         if(item.itemsBought >= 100) {
           this.bestSellersItems.push(item);
         }
+    
+        if(item.itemsBought >= 250) {
+          this.bestFurnitureSellersItems.push(item);
+        }
       })
+      sessionStorage.setItem('ecommerceItems',JSON.stringify(this.items))
     })
 
   }

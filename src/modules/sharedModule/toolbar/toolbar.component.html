@@ -42,14 +42,82 @@
 
             <div class="toolbar__shop-icon">
                 <div class="toolbar__shop-icon-holder">
+                    <span class="toolbar__shop-count" *ngIf="favouriteItems && favouriteItems.length > 0">{{favouriteItems.length}}</span>
                     <i class="fa fa-heart-o"></i>
                 </div>
                 <div class="toolbar__shop-icon-holder">
                     <img src="../../../assets/icons/Exchange.svg" />
                 </div>
-                <div class="toolbar__shop-icon-holder">
+                <div (click)="openCartModal()" class="toolbar__shop-icon-holder">
+                    <span class="toolbar__shop-count" *ngIf="cartItems && cartItems.length > 0">{{cartItems.length}}</span>
                     <i class="fa fa-cart-plus"></i>
                 </div>
+
+                <ng-container *ngIf="isCartOpen">
+                    <div class="toolbar__cart-items">
+                        <div class="toolbar__cart-items-flex">
+                            <div class="toolbar__cart-items-header">
+                                Shopping Cart
+                            </div>
+                            <div (click)="closeCartModal()" class="toolbar__cart-items-close">&times;</div>
+                        </div>
+
+                        <div class="toolbar__cart-items-body">
+                            <ng-container *ngFor="let item of cartItems">
+                                <div class="toolbar__cart-item-flex">
+                                    <div class="d-flex align-content-center justify-content-between">
+                                        <img [src]="item.picture" />
+                                        <div class="toolbar__cart-item-count">
+                                            <div class="toolbar__cart-item-name">{{item?.name}}</div>
+                                            <div class="toolbar__cart-item-input">
+                                                <span class="toolbar__cart-item-input-minus" (click)="decrementItem(item)">-</span>
+                                                <span class="toolbar__cart-item-input-plus" (click)="incrementItem(item)">+</span>
+                                                <input type="number" [(ngModel)]="item.cartItems" [min]="0"/>
+                                                <span class="toolbar__cart-item-multiple">&times;</span>
+                                                <span class="toolbar__cart-item-price">${{item.price | number: '1.2-2'}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div (click)="removeItemFromCart(item)" class="toolbar__cart-item-delete">
+                                        <i class="fa fa-trash"></i>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+
+                        <div class="toolbar__cart-items-footer">
+                            <div class="toolbar__cart-items-footer-flex">
+                                <div class="toolbar__cart-items-footer-sub-total">
+                                    Subtotal:
+                                </div>
+
+                                <div class="toolbar__cart-items-footer-summation">
+                                    ${{totalPrice |number:'1.2-2'}}
+                                </div>
+                            </div>
+
+
+                            <div class="toolbar__cart-items-footer-discount">
+                                <div class="toolbar__cart-items-footer-discount-message">
+                                 <ng-container *ngIf="totalPrice < 2000">Add ${{(2000-totalPrice) |number:'1.2-2'}} more to get free shipping!</ng-container>  
+                                 <ng-container *ngIf="totalPrice >= 2000">Congratulations! You got free shipping 🎉
+                                </ng-container>  
+
+                                </div>
+                                <div class="toolbar__cart-items-footer-progress">
+                                    <div [ngStyle]="{'width':(totalPrice/2000)*100+'%'}" class="toolbar__cart-price-range"></div>
+
+                                </div>
+                            </div>
+
+                            <div class="toolbar__cart-items-footer-button-options">
+                                <button type="button" class="btn">View cart</button>
+                                <button type="button" class="btn mx-2">Checkout</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </ng-container>
             </div>
             <div>
                 <img class="toolbar__my-photo" src="../../../assets/icons/Profile.png" />

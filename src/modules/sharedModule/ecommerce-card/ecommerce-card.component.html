@@ -1,18 +1,18 @@
 <div class="ecommerce-card">
-    <div class="ecommerce-card__container">
+    <div [routerLink]="['/ecommerce/details/',item.id]" class="ecommerce-card__container">
         <div class="ecommerce-card__image">
             <div *ngIf="item?.isSaled" class="ecommerce-card__saled">SALE</div>
             <div class="ecommerce-card__flex">
                 <div></div>
                 <div><img class="ecommerce-card__item-image" [src]="item?.picture" /></div>
                 <div class="ecommerce-card__item-options">
-                    <div>
-                        <i [ngClass]="{'background-color':item?.isFavourite ? danger : white }" class="fa fa-heart-o ecommerce-card__item-options-icon"></i>
+                    <div (click)="setItemAsFavourite(item)">
+                        <i [ngClass]="{'ecommerce-card__item-options-icon-select':item?.isFavourite}" class="fa fa-heart-o ecommerce-card__item-options-icon"></i>
                     </div>
                     <div>
                         <i class="ecommerce-card__item-options-icon fa fa-exchange"></i>
                     </div>
-                    <div>
+                    <div (click)="openItemDetails(moadlItemDetails,item)">
                         <i class="fa fa-eye ecommerce-card__item-options-icon"></i>
                     </div>
                 </div>
@@ -30,9 +30,70 @@
             </div>
 
             <div class="ecommerce-card__add-to-cart">
-                <a>Add to chart</a>
+                <a *ngIf="item.cartItems === 0" (click)="setItemToCart(item)">Add to chart</a>
+                <a *ngIf="item.cartItems > 0">View cart</a>
+
             </div>
         </div>
    
     </div>
 </div>
+
+
+<ng-template #moadlItemDetails>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-6">
+                <div class="ecommerce-card__details-picture">
+                    <div *ngIf="item?.isSaled" class="ecommerce-card__saled">SALE</div>
+                                    <img [src]="'../../../assets/icons/'+selectedItem.picture" /></div>
+                </div>
+            <div class="col-6">
+                <div class="ecommerce-card__details">
+                    <button type="button"
+                    class="close btn ecommerce-card__details-close"
+                    (click)="closeModal()"
+                    aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+                <div class="ecommerce-card__details-name">{{selectedItem?.name}}</div>
+                <div class="ecommerce-card__details-flex">
+                    <div class="ecommerce-card__details-price">${{selectedItem?.price |number:'1.2-2'}}</div>
+                    <div *ngIf="selectedItem?.hasDiscount" class="ecommerce-card__details-discount">${{(selectedItem?.price + selectedItem?.discountPrice) | number: '1.2-2'}}</div> 
+    
+                </div>
+                
+                <div class="ecommerce-card__details-description">
+                    {{selectedItem?.description}}
+                </div>
+
+                <div class="toolbar__cart-item-flex-between">
+                                 <div class="toolbar__cart-item-input">
+                    <span class="toolbar__cart-item-input-minus" (click)="decrementItem(selectedItem)">-</span>
+                    <span class="toolbar__cart-item-input-plus" (click)="incrementItem(selectedItem)">+</span>
+                    <input type="number" class="toolbar__cart-item-select" [(ngModel)]="selectedItem.cartItems" [min]="0"/>
+
+                    </div>
+           
+
+                    <div>
+                            <button (click)="addItemToCart(selectedItem)" class="btn toolbar__cart-item-add-cart">Add to Cart</button>
+
+                    </div>
+
+                </div>
+                <!-- <hr /> -->
+                <div class="ecommerce-card__categorty">
+                    <div class="ecommerce-card__categorty-text">Category: </div>
+                    <div class="ecommerce-card__categorty-name">{{selectedItem.typeName}}</div>
+                </div>
+                <!-- <hr /> -->
+                <div class="ecommerce-card__add-product">
+                    <button (click)="goToProductDetails(selectedItem)" class="btn">Go to product page</button>
+                </div>
+            </div>
+
+            </div>
+        </div>
+    </div>
+</ng-template>

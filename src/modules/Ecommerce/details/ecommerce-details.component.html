@@ -1,0 +1,133 @@
+<div class="ecommerce-details">
+    <div class="ecommerce-details__container">
+        <h1 class="text-3xl font-bold underline">
+            Hello world!
+          </h1>
+        <div class="ecommerce-details__flex">
+            <div class="ecommerce-details__picture">
+                <img [src]="'../../../assets/icons/'+selectedProductDetails.picture" />
+            </div>
+
+            <div class="ecommerce-details__description-holder">
+                <div class="ecommerce-card__details-name">{{selectedProductDetails?.name}}</div>
+                <div class="ecommerce-details__flex">
+                    <div class="ecommerce-card__details-price">${{selectedProductDetails?.price |number:'1.2-2'}}</div>
+                    <div *ngIf="selectedProductDetails?.hasDiscount" class="ecommerce-card__details-discount">${{(selectedProductDetails?.price + selectedProductDetails?.discountPrice) | number: '1.2-2'}}</div> 
+    
+                </div>
+                
+                <div class="ecommerce-card__details-description">
+                    {{selectedProductDetails?.description}}
+                </div>
+
+                <div class="toolbar__cart-item-flex-between">
+                                 <div class="toolbar__cart-item-input">
+                    <span class="toolbar__cart-item-input-minus" (click)="decrementItem(selectedProductDetails)">-</span>
+                    <span class="toolbar__cart-item-input-plus" (click)="incrementItem(selectedProductDetails)">+</span>
+                    <input type="number" class="toolbar__cart-item-select" [(ngModel)]="selectedProductDetails.cartItems" [min]="0"/>
+
+                    </div>
+           
+
+                    <div>
+                            <button (click)="addItemToCart(selectedProductDetails)" class="btn toolbar__cart-item-add-cart">Add to Cart</button>
+
+                    </div>
+
+                </div>
+                <!-- <hr /> -->
+                <div class="ecommerce-card__categorty">
+                    <div class="ecommerce-card__categorty-text">Category: </div>
+                    <div class="ecommerce-card__categorty-name">{{selectedProductDetails.typeName}}</div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="ecommerce-details__flex-center">
+            <a (click)="changeTab('descriptions')" [ngClass]="{'ecommerce-details__tab--active':currentTab === 'descriptions'}" class="ecommerce-details__tab">Description</a>
+            <a (click)="changeTab('additionalInfo')" [ngClass]="{'ecommerce-details__tab--active':currentTab === 'additionalInfo'}" class="ecommerce-details__tab">Addition Information</a>
+            <a (click)="changeTab('reviews')" [ngClass]="{'ecommerce-details__tab--active':currentTab === 'reviews'}" class="ecommerce-details__tab">Reviews ({{selectedProductDetails?.reviews?.length}})</a>
+        </div>
+
+        <div>
+            <ng-container *ngIf="currentTab === 'descriptions'">
+                    <div class="ecommerce-card__details-description">
+                        {{selectedProductDetails?.description}}
+                    </div>
+            </ng-container>
+
+            <ng-container *ngIf="currentTab === 'additionalInfo'">
+                <div class="ecommerce-card__table">
+                    <table class="mt-3 table table-bordered table-hover table-responsive">
+                        <thead>
+                            <tr>
+                                <th>Color</th>
+                                <th>Bought Items</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>{{selectedProductDetails?.color}}</td>
+                                <td>{{selectedProductDetails?.itemsBought}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+        </ng-container>
+
+        <ng-container *ngIf="currentTab === 'description'">
+            <div class="ecommerce-card__details-description">
+                {{selectedProductDetails?.description}}
+            </div>
+    </ng-container>
+
+    
+    <ng-container *ngIf="currentTab === 'revuews'">
+        <div class="ecommerce-card__details-description">
+            <div class="ecommerce-card__flex-between">
+                <div class="ecommerce-card__reviews-header">
+                    Reviews
+                </div>
+                <div class="ecommerce-card__add-review">
+                    <div class="ecommerce-card__add-review-header">
+                        Add a review
+                    </div>
+                    <div class="ecommerce-card__add-review-desc">
+                        Your email address will not be published. Required fields are marked *
+                    </div>
+
+                    <div class="ecommerce-card__flex">
+                        <div class="ecommerce-card__your-rating">
+                            Your rating 
+                        </div>
+
+                        <div class="ecommerce-card__your-rating-stars">
+                            <ul class="list-unstyled d-flex text-warning mb-1">
+                                <li><i class="fa fa-star mx-2"></i></li>
+                                <li><i class="fa fa-star mx-2"></i></li>
+                                <li><i class="fa fa-star mx-2"></i></li>
+                                <li><i class="fa fa-star mx-2"></i></li>
+                                <li><i class="fa fa-star-half-empty mx-2"></i></li>
+                              </ul>
+                        </div>
+
+                        <div class="ecommerce-card__review-form">
+                            <div class="row">
+                                
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+</ng-container>
+        </div>
+        
+    </div>
+</div>

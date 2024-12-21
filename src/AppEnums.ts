@@ -23,6 +23,8 @@ export enum CategoryType {
     BEAUTY = 20,
     GROCERIES = 21,
     FURNITURE = 22,
+    DECORE = 23,
+    STORAGE = 24
   }
   
 
@@ -49,5 +51,8 @@ export enum CategoryType {
     [CategoryType.BEAUTY]: 'Beauty',
     [CategoryType.GROCERIES]: 'Groceries',
     [CategoryType.FURNITURE]: 'Furniture',
+    [CategoryType.DECORE]: 'DECORE',
+    [CategoryType.STORAGE]: 'STORAGE',
+
   };
   

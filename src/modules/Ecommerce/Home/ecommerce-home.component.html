@@ -46,7 +46,7 @@
                         <div class="position-relative">
                         <img class="ecommerce-home__top-header-image-small img-fluid" src="../../../assets/icons/ecommerce2.webp">
                         <div class="ecommerce-home__small-desc-top">
-                            <div>Bed Room</div>
+                            <div>Bedroom</div>
                             <span>$320
                             </span>
                         </div>
@@ -80,12 +80,177 @@
 
         <div class="ecommerce-home__bset-sallers-items">
             <div class="row">
-                <div *ngFor="let item of bestSellersItems" class="col-3">
+                <div *ngFor="let item of bestSellersItems.slice(0, 4)" class="col-3">
                     <app-ecommerce-card [item]="item"></app-ecommerce-card>
                 </div>
             </div>
         </div>
 
     </div>
-</div>
+
+    <div class="ecommerce-home__browse-room">
+        <div class="ecommerce-home__container">
+            <div class="row">
+                <div class="col-6">
+                    <div class="ecommerce-home__browse-living-header">
+                        <h4>Browse by rooms</h4>
+                        <p>Sit massa etiam urna id. Non pulvinar aenean ultrices lectus vitae imperdiet vulputate a eu. Aliquet ullamcorper leo mi vel sit pretium euismod eget.</p>
+                        <div class="position-relative">
+                            <img class="img-fluid" src="../../../assets/icons/browse-by-rooms-image-1-1.webp" />
+                            <div class="ecommerce-home__small-desc-bottom-living">
+                                <div>Living Room
+                                </div>
+                                <span>15 products
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="ecommerce-home__browse-living">
+                        <div class="position-relative mb-4">
+                            <img class="img-fluid" src="../../../assets/icons/browse-by-rooms-image-2-1.webp" />
+                            <div class="ecommerce-home__small-desc-bottom-living">
+                                <div>Bedroom</div>
+                                <span>24 products
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ecommerce-home__browse-living-flex">
+                        <div class="position-relative">
+                            <img width="330" class="img-fluid" src="../../../assets/icons/browse-by-rooms-image-3.webp" />
+                            <div class="ecommerce-home__small-desc-bottom-living">
+                                <div>Walk-in Closet
+                                </div>
+                                <span>30 products
+
+                                </span>
+                            </div>
+                        </div>
+                        <div class="position-relative">
+                            <img width="330" class="img-fluid" src="../../../assets/icons/browse-by-rooms-image-4-1.webp" />
+                            <div class="ecommerce-home__small-desc-bottom-living">
+                                <div>Kitchen</div>
+                                <span>24 products
+
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ecommerce-home__bset-sallers">
+        <div class="ecommerce-home__header">
+            Top selling furniture
+        </div>
+
+        <div class="ecommerce-home__desc">
+            Quam elementum pulvinar etiam non quam. Faucibus nisl tincidunt eget nullam non nisi elementum sagittis vitae et leo duis ut diam quam.
+        </div>
+
+        <div class="ecommerce-home__bset-sallers-items">
+            <div class="row">
+                <div *ngFor="let item of bestFurnitureSellersItems.slice(0, 4)" class="col-3">
+                    <app-ecommerce-card [item]="item"></app-ecommerce-card>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="ecommerce-home__special-offers">
+        <div class="ecommerce-home__container">
+            <div class="ecommerce-home__flex-between">
+                <div class="ecommerce-home__special-offers-header-desc">
+                    <h3>Special offers
+                    </h3>
+                    <p>Quam elementum pulvinar etiam non quam tincidunt eget nullam non.
+                    </p>
+                </div>
+                <div class="ecommerce-home__see-all">
+                    <button type="button" class="btn ecommerce-home__see-all-btn">See All <i class="fa fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-4">
+                    <div [ngStyle]="{'background-color':'#9ba89e'}" class="ecommerce-home__special-card">
+                        <img src="../../../assets/icons/offers-image-1.webp" />
+                        <div class="ecommerce-home__special-card-desc">
+                            <h3>Special Discount</h3>
+                            <p>30% OFF</p>
+                            <span>Aliquet sagittis purus faucibus egestas.</span>
+
+                            <button type="button" class="btn ecommerce-home__special-browser">Browser Now</button>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div [ngStyle]="{'background-color':'#d39e76'}" class="ecommerce-home__special-card">
+                        <img src="../../../assets/icons/offers-image-3.webp" />
+                        <div class="ecommerce-home__special-card-desc">
+                            <h3>Weekly Discount
+                            </h3>
+                            <p>25% OFF</p>
+                            <span>Aliquet sagittis purus faucibus egestas.</span>
+                            <button type="button" class="btn ecommerce-home__special-browser">Browser Now</button>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div [ngStyle]="{'background-color':'#a7a29c'}" class="ecommerce-home__special-card">
+                        <img src="../../../assets/icons/offers-image-2.webp" />
+                        <div class="ecommerce-home__special-card-desc">
+                            <h3>Birthday Discount
+                            </h3>
+                            <p>40% OFF</p>
+                            <span>Aliquet sagittis purus faucibus egestas.</span>
+                            <button type="button" class="btn ecommerce-home__special-browser">Browser Now</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    . <div class="ecommerce-home__best-quality">
+        <div class="ecommerce-home__container"> 
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-12">
+                    <div class="ecommerce-home__best-quality-hedaer-desc">
+                        <h3>Luxurious Furniture Starts with the Best Quality Materials
+                        </h3>
+                        <p>Donec et odio pellentesque diam volutpat commodo amet consectetur adipiscing elit ut aliquam purus vitae et leo duis ut diam quam nulla porttitor. Sodales ut eu sem integer vitae justo eget magna.
+                        </p>
+                        <button type="button" class="btn ecommerce-home__see-all-btn">Learn More</button>
+
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <div class="align-content-center d-flex justify-content-between">
+                        <img class="ecommerce-home__best-quality-img" src="../../../assets/icons/home-mask-image.webp">
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+        . <div class="ecommerce-home__partners">
+              <div class="ecommerce-home__partners-holder">
+                <img src="../../../assets/icons/brand-goldline.svg" />
+                <img src="../../../assets/icons/brand-magnolia.svg" />
+                <img src="../../../assets/icons/brand-boltshift.svg" />
+                <img src="../../../assets/icons/brand-contrast.svg" />
+                <img src="../../../assets/icons/brand-asgardia.svg" />
+                <img src="../../../assets/icons/brand-komplex.svg" />
+                </div>
+            </div>
   </div>
